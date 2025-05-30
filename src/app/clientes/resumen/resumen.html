@@ -1,0 +1,15 @@
+<div class="container mt-5" *ngIf="cliente as c">
+  <h2>Resumen del Cliente</h2>
+
+  <div class="card mt-4">
+    <div class="card-body">
+      <p><strong>Tipo:</strong> {{ c.tipo }}</p>
+      <p><strong>Número:</strong> {{ c.numero }}</p>
+      <p><strong>Nombres:</strong> {{ c.nombres }}</p>
+      <p><strong>Apellidos:</strong> {{ c.apellidos }}</p>
+      <p><strong>Correo:</strong> {{ c.correo }}</p>
+    </div>
+  </div>
+
+  <button class="btn btn-secondary mt-3" (click)="volver()">Volver al formulario</button>
+</div>

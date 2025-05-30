@@ -1,0 +1,47 @@
+<div class="container mt-5">
+  <h2>Búsqueda de Cliente</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+    <div class="mb-3">
+      <label for="tipo" class="form-label">Tipo de documento</label>
+      <select id="tipo" formControlName="tipo" class="form-select" [class.is-invalid]="submitted && tipo.invalid">
+        <option value="" disabled selected>Seleccione...</option>
+        <option value="C">Cédula</option>
+        <option value="P">Pasaporte</option>
+      </select>
+      <div *ngIf="submitted && tipo.invalid" class="invalid-feedback">
+        Tipo de documento es obligatorio.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="numero" class="form-label">Número de documento</label>
+      <input
+        id="numero"
+        type="text"
+        formControlName="numero"
+        class="form-control"
+        [class.is-invalid]="submitted && numero.invalid"
+        placeholder="Ej: 23445322"
+      />
+      <div *ngIf="submitted && numero.errors?.['required']" class="invalid-feedback">
+        El número es obligatorio.
+      </div>
+      <div *ngIf="submitted && numero.errors?.['pattern']" class="invalid-feedback">
+        Solo se permiten números.
+      </div>
+      <div *ngIf="submitted && numero.errors?.['minlength']" class="invalid-feedback">
+        Mínimo 5 dígitos.
+      </div>
+      <div *ngIf="submitted && numero.errors?.['maxlength']" class="invalid-feedback">
+        Máximo 15 dígitos.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Buscar</button>
+  </form>
+
+  <div *ngIf="error" class="alert alert-danger mt-3">
+    {{ error }}
+  </div>
+</div>
